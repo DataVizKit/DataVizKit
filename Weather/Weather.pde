@@ -1,5 +1,5 @@
 void setup() {
-  println( getWeather("Nantes") );
+  println( getWeather( "Nantes" ) );
   exit();
 }
 
@@ -13,7 +13,7 @@ String getWeather(String where) {
     String low = xml.getChild("temperature").getString("min"); //this returns "4"
     String humidity = xml.getChild("humidity").getString("value"); //this returns "96"
 
-    String weatherString = "The weather in " + where + " will be " + weather +
+    String weatherString = "The current weather in " + where + " is " + weather +
       " with a low of " + low + " degrees celcius, and a high of " + high + 
       " degrees celcius. Humidity will be at " + humidity + "%.";
 
