@@ -3,7 +3,6 @@
 
 import megamu.mesh.*;
 
-Voronoi parisVoronoi;
 MPolygon[] arrondissements;
 int numArrondissements = 20; // the 20 arrondissements of paris
 int numExtraPoints = 15; // for adding some outer extra points for correcting the oval shape of central paris
@@ -12,7 +11,7 @@ Arrondissement[] arrt; // arrondissement object holding data
 
 void setup() {
   
-  size(1280, 720);
+  size(1280, 1280);
   float[][] points = new float[numArrondissements + numExtraPoints][2];
   // add the arrondissements centers in a spiral, counter-clockwise order
   for (int i = 0; i < numArrondissements; i++) {
@@ -23,7 +22,7 @@ void setup() {
     points[i][0] = width/2 + width * 0.6 * sin(- TWO_PI * i/numExtraPoints); // ith point, x
     points[i][1] = height/2 + height * 0.6 * cos(- TWO_PI * i/numExtraPoints); // ith point, y
   }
-  parisVoronoi = new Voronoi( points );
+  Voronoi parisVoronoi = new Voronoi( points );
   arrondissements = parisVoronoi.getRegions();
   
   arrt = new Arrondissement[numArrondissements];
@@ -39,8 +38,7 @@ void draw() {
 background(230);
   for (int i = 0; i < numArrondissements; i++)
   {
-
-    fill(255 * arrt[i].getData("TOTAL") / 100000.0);
+    fill(2.55 * arrt[i].getDataPercent("prêts jeunesse"));
     stroke(255);
     arrondissements[i].draw(this); // draw this shape
     

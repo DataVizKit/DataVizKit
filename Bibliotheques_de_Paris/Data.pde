@@ -5,8 +5,6 @@ void readCSV() {
   String [] lines = loadStrings("2012_07.csv");
   int emptyLineCounter = 0;
 
-
-
   String firstLine = lines[0];
   String[] titles = split(firstLine, ';');
 
@@ -22,7 +20,18 @@ void readCSV() {
         //println(piece);
         int pieceInt = int( piece.replace(".", "") );
         int arrondissementNumber = int(pieces[0])-1; // number of the current arrondissement
-        if (i > 2 && arrondissementNumber >= 0 && arrondissementNumber < numArrondissements) arrt[arrondissementNumber].addData(titles[i], pieceInt);
+        if (arrondissementNumber >= 0 && arrondissementNumber < numArrondissements) {
+          // only grab the intersting stuff
+          if ( titles[i].matches("prêts adultes") ||
+            titles[i].matches("prêts adultes") ||
+            titles[i].matches("prêts discothèque") ||
+            titles[i].matches("prêts jeunesse") ||
+            titles[i].matches("prêts vidéothèque") ||
+            titles[i].matches("prêts pôles thém. / langues") ||
+            titles[i].matches("TOTAL")
+            )
+            arrt[arrondissementNumber].addData(titles[i], pieceInt);
+        }
       }
     }
 
@@ -50,11 +59,16 @@ class Arrondissement {
       int val = datamap.get(s);
       datamap.put(s, val+i);
     }
-    println(s + " has now value: " + datamap.get(s) );
+    println(s + " has now value: " + datamap.get(s) + " ( " + nfc(getDataPercent(s),2) + " of Total)" );
   }
 
   int getData(String s) {
     return datamap.get(s);
+  }
+
+  float getDataPercent(String s) {
+    if (datamap.get("TOTAL") != null) return 100.0 * float(datamap.get(s))/float(datamap.get("TOTAL"));
+    else return 0.0;
   }
 }
 
