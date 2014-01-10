@@ -22,6 +22,10 @@ void setup() {
   }
   parisVoronoi = new Voronoi( points );
   arrondissements = parisVoronoi.getRegions();
+  
+  
+  
+  readCSV();
 }
 
 void draw() {
@@ -42,6 +46,7 @@ void draw() {
     }
     center[0] /= regionCoordinates.length;
     center[1] /= regionCoordinates.length;
+    
 
     text(i+1, center[0], center[1]);
   }
