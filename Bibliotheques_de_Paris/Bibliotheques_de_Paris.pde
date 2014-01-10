@@ -8,7 +8,10 @@ MPolygon[] arrondissements;
 int numArrondissements = 20; // the 20 arrondissements of paris
 int numExtraPoints = 15; // for adding some outer extra points for correcting the oval shape of central paris
 
+Arrondissement[] arrt; // arrondissement object holding data
+
 void setup() {
+  
   size(1280, 720);
   float[][] points = new float[numArrondissements + numExtraPoints][2];
   // add the arrondissements centers in a spiral, counter-clockwise order
@@ -23,18 +26,24 @@ void setup() {
   parisVoronoi = new Voronoi( points );
   arrondissements = parisVoronoi.getRegions();
   
-  
+  arrt = new Arrondissement[numArrondissements];
+  for (int i = 0; i < arrt.length; i++) {
+    arrt[i] = new Arrondissement();
+  }
+
   
   readCSV();
 }
 
 void draw() {
-
+background(230);
   for (int i = 0; i < numArrondissements; i++)
   {
-    fill(200);
+
+    fill(255 * arrt[i].getData("TOTAL") / 100000.0);
     stroke(255);
     arrondissements[i].draw(this); // draw this shape
+    
     fill(0);
     stroke(0);
     // an array of points
@@ -46,8 +55,6 @@ void draw() {
     }
     center[0] /= regionCoordinates.length;
     center[1] /= regionCoordinates.length;
-    
-
     text(i+1, center[0], center[1]);
   }
 }

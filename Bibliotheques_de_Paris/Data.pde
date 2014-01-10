@@ -6,10 +6,6 @@ void readCSV() {
   int emptyLineCounter = 0;
 
 
-  Arrondissement[] arrt = new Arrondissement[numArrondissements];
-  for (int i = 0; i < arrt.length; i++) {
-    arrt[i] = new Arrondissement();
-  }
 
   String firstLine = lines[0];
   String[] titles = split(firstLine, ';');
@@ -31,7 +27,7 @@ void readCSV() {
     }
 
     if (emptyPieceCounter == pieces.length) {
-      println("line is empty!");
+      // println("line is empty!");
       emptyLineCounter++;
       if (emptyLineCounter == 2) return; // end of data if second empty line is reached!
     }
