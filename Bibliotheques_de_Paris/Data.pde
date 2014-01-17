@@ -1,8 +1,9 @@
 import java.util.Map;
 
 
-void readCSV() {
-  String [] lines = loadStrings("2012_07.csv");
+void readCSV(String filename) {
+  String [] lines = loadStrings(filename);
+  int timestamp = int(split(filename, '.')[0]);
   int emptyLineCounter = 0;
 
   String firstLine = lines[0];
