@@ -9,9 +9,15 @@ int numExtraPoints = 15; // for adding some outer extra points for correcting th
 
 Arrondissement[] arrt; // arrondissement object holding data
 
+ArrayList data_titles; // titles of the different datasets
+int selected_dataset = 0;
+
 void setup() {
   
   size(1280, 1280);
+  
+  data_titles = new ArrayList<String>();  // Create an empty ArrayList
+  
   float[][] points = new float[numArrondissements + numExtraPoints][2];
   // add the arrondissements centers in a spiral, counter-clockwise order
   for (int i = 0; i < numArrondissements; i++) {
@@ -38,7 +44,7 @@ void draw() {
 background(230);
   for (int i = 0; i < numArrondissements; i++)
   {
-    fill(2.55 * arrt[i].getDataPercent("prêts jeunesse"));
+    fill(2.55 * arrt[i].getDataPercent( (String) data_titles.get(selected_dataset) ));
     stroke(255);
     arrondissements[i].draw(this); // draw this shape
     
@@ -55,5 +61,15 @@ background(230);
     center[1] /= regionCoordinates.length;
     text(i+1, center[0], center[1]);
   }
+  stroke(0);
+  text("dataset: " + data_titles.get(selected_dataset), 10, 10);
 }
 
+
+void keyPressed() {
+  if(keyCode == RIGHT) selected_dataset++;
+  else if(keyCode == LEFT) selected_dataset--;
+  
+  selected_dataset = abs(selected_dataset%data_titles.size());
+
+}

@@ -8,6 +8,19 @@ void readCSV() {
   String firstLine = lines[0];
   String[] titles = split(firstLine, ';');
 
+  for (String title : titles) {
+    if ( title.matches("prêts adultes") ||
+      title.matches("prêts adultes") ||
+      title.matches("prêts discothèque") ||
+      title.matches("prêts jeunesse") ||
+      title.matches("prêts vidéothèque") ||
+      title.matches("prêts pôles thém. / langues") ||
+      title.matches("TOTAL") ) {
+        data_titles.add( title );
+    }
+  }
+
+
   for (String line : lines) { // go through the file line by line
     String[] pieces = split(line, ';');
     int emptyPieceCounter = 0;
@@ -59,7 +72,7 @@ class Arrondissement {
       int val = datamap.get(s);
       datamap.put(s, val+i);
     }
-    println(s + " has now value: " + datamap.get(s) + " ( " + nfc(getDataPercent(s),2) + " of Total)" );
+    println(s + " has now value: " + datamap.get(s) + " ( " + nfc(getDataPercent(s), 2) + " of Total)" );
   }
 
   int getData(String s) {
@@ -67,7 +80,7 @@ class Arrondissement {
   }
 
   float getDataPercent(String s) {
-    if (datamap.get("TOTAL") != null) return 100.0 * float(datamap.get(s))/float(datamap.get("TOTAL"));
+    if (datamap.get("TOTAL") != null && datamap.get(s) != null) return 100.0 * float(datamap.get(s))/float(datamap.get("TOTAL"));
     else return 0.0;
   }
 }
