@@ -37,7 +37,7 @@ void setup() {
   }
 
   
-  readCSV("1207.csv");
+  readCSV("1004.csv");
 }
 
 void draw() {
