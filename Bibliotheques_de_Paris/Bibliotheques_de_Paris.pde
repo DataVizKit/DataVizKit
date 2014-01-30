@@ -14,7 +14,7 @@ int selected_dataset = 0;
 
 void setup() {
   
-  size(1280, 1280);
+  size(960, 960);
   
   data_titles = new ArrayList<String>();  // Create an empty ArrayList
   
