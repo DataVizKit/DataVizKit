@@ -1,5 +1,5 @@
-//Dependencies: treemap library by Ben Fry
-// the treemap library is available here: http://benfry.com/writing/treemap/
+// Dependencies: mesh library by Lee Byron
+// the mesh library is available here: http://leebyron.com/else/mesh/
 
 import megamu.mesh.*;
 
