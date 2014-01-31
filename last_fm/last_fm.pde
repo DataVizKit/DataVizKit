@@ -3,7 +3,7 @@
 
 import treemap.*;
 
-String user = "un3x";
+String user = "rj";
 String apiKey = "134c768f69763e57683428872d3e144c";
 
 CustomTreemap map;
