@@ -2,7 +2,7 @@ Table table;
 
 void setup() {
 
-  table = loadTable("JCC2.csv", "header, csv");
+  table = loadTable("JCC2.csv", "header, tsv");
 
   println(table.getRowCount() + " total rows in table"); 
 
